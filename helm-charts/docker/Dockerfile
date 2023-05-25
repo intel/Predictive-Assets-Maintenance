@@ -1,0 +1,43 @@
+#
+# Copyright 2016 The BigDL Authors.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+
+
+FROM ubuntu:20.04
+ARG DEBIAN_FRONTEND=noninteractive
+ENV TZ=Asia/Shanghai
+SHELL ["/bin/bash", "-c"]
+
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends gcc wget && \
+    rm -rf /var/lib/apt/lists/* && \
+    rm /bin/sh && \
+    echo "auth required pam_wheel.so use_uid" >> /etc/pam.d/su && \
+    chgrp root /etc/passwd && chmod ug+rw /etc/passwd && \
+    # Install Miniconda
+    wget --progress=dot:giga --no-check-certificate https://repo.anaconda.com/miniconda/Miniconda3-py39_4.12.0-Linux-x86_64.sh && \
+    chmod +x Miniconda3-py39_4.12.0-Linux-x86_64.sh && \
+    ./Miniconda3-py39_4.12.0-Linux-x86_64.sh -b -f -p /usr/local && \
+    rm Miniconda3-py39_4.12.0-Linux-x86_64.sh && \
+    # python
+    conda create -y -n chronos python=3.9 setuptools=58.0.4 && \
+    echo "source activate chronos" > ~/.bashrc
+ENV PATH /usr/local/envs/chronos/bin:$PATH
+
+RUN source activate chronos && \
+    pip install --no-cache-dir bigdl-chronos[pytorch]==2.4.0b20230522 matplotlib==3.7.1 notebook==6.4.12
+
+RUN mkdir -p /workspace /dataset
+COPY ./AIOps /workspace/AIOps
