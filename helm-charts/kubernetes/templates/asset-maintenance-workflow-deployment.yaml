@@ -1,0 +1,41 @@
+
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: asset-maintenance-job
+spec:
+  template:
+    metadata:
+      labels:
+        app: asset-maintenance
+    spec:
+      restartPolicy: OnFailure
+      containers:
+      - name: asset-maintenance
+        image: {{ .Values.image }}
+        imagePullPolicy: IfNotPresent
+        volumeMounts:
+        - mountPath: /workspace/AIOps
+          name: workflow-dir
+        - mountPath: /dataset
+          name: dataset-dir
+        env:
+        - name: http_proxy
+          value: {{ .Values.httpProxy }}
+        - name: https_proxy
+          value: {{ .Values.httpsProxy }}
+        - name: no_proxy
+          value: {{ .Values.noProxy }}
+        command: ["/bin/sh", "-c"]
+        args:
+          - cd /workspace/AIOps;
+            echo "Start workflow";
+            python AIOps_Asset_Maintenance.py;
+            exit;
+      volumes:
+      - name: workflow-dir
+        hostPath:
+          path: {{ .Values.workflowPath }}
+      - name: dataset-dir
+        hostPath:
+          path: {{ .Values.datasetPath }}
