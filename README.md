@@ -165,6 +165,35 @@ Delete job created by K8s and remove helm release.
 helm delete asset-maintenance
 ```
 
+## Run Using Jupyter Lab
+### 1. Prepare Environment
+Users are encouraged to use the ``conda`` package and enviroment on local computer. If you don't already have ``conda`` installed, see the [Conda Linux installation instructions](https://docs.conda.io/projects/conda/en/stable/user-guide/install/linux.html).
+```bash
+conda create -n my_env python=3.9 setuptools=58.0.4
+conda activate my_env
+pip install --pre --upgrade bigdl-chronos[pytorch] matplotlib notebook==6.4.12
+
+# to use jupyter lab
+pip install jupyterlab jupyter_server_terminals
+conda install ipykernel -y
+ipython kernel install --user --name=my_env
+```
+
+### 2. Set Up Working Directory
+```bash
+# If you have done this in section Workflow Repository
+# please skip next 2 commands
+mkdir ~/work && cd ~/work
+git clone https://github.com/intel/Predictive-Assets-Maintenance.git
+```
+
+### 3. Run Notebook
+Run the following command to use jupyter lab:
+```bash
+jupyter lab
+```
+Open jupyter lab in a web browser and set `my_env` as the jupyter kernel. Then you can open `AIOps_Asset_Maintenance.ipynb` and follow the notebook's instructions step by step.
+
 ## Run Using Bare Metal
 ### 1. Prepare Environment
 Users are encouraged to use the ``conda`` package and enviroment on local computer. If you don't already have ``conda`` installed, see the [Conda Linux installation instructions](https://docs.conda.io/projects/conda/en/stable/user-guide/install/linux.html).
