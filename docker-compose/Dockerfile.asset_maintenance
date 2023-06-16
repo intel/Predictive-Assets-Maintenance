@@ -23,7 +23,6 @@ SHELL ["/bin/bash", "-c"]
 RUN apt-get update && \
     apt-get install -y --no-install-recommends gcc wget && \
     rm -rf /var/lib/apt/lists/* && \
-    rm /bin/sh && \
     echo "auth required pam_wheel.so use_uid" >> /etc/pam.d/su && \
     chgrp root /etc/passwd && chmod ug+rw /etc/passwd && \
     # Install Miniconda
