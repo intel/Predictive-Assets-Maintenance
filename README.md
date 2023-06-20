@@ -236,18 +236,20 @@ bash build-docker-image.sh # NAME:TAG of the image is intelanalytics/bigdl:asset
 Prepare and update workflow values in `values.yml`
 ```bash
 cd $WORKSPACE/<workflow repo name>/helm-charts/kubernetes
+# update workflow values in `values.yml`
 ```
-Run this workflow on K8s using helm.
+Then run this workflow on K8s using helm.
 ```bash
+export NAMESPACE=argo
 cd helm-charts/kubernetes
 helm install asset-maintenance ./
+argo submit --from wftmpl/<workflow-name> --namespace=${NAMESPACE}
 ```
 
 #### 4. View 
 To view your workflow progress:
 ```bash
-kubectl get pods
-kubectl logs your_pod_name
+argo logs @latest -f
 ```
 
 ### Run Using Bare Metal
