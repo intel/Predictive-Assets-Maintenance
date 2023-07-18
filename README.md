@@ -70,7 +70,7 @@ More details can be found in [Solution Technical Details](#solution-technical-de
 Define an environment variable that will store the workspace path, this can be an existing directory or one to be created in further steps. This ENVVAR will be used for all the commands executed using absolute paths.
 
 ```
-export WORKSPACE=your_workspace_dir
+export WORKSPACE=<your_workspace_dir>
 ```
 
 ### Download the Workflow Repository
@@ -81,7 +81,7 @@ Create a working directory for the workflow and all components of the workflow c
 # For example...
 mkdir -p $WORKSPACE && cd $WORKSPACE
 git clone https://github.com/intel/Predictive-Assets-Maintenance.git
-cd $WORKSPACE/<workflow repo name>/AIOps
+cd $WORKSPACE/Predictive-Assets-Maintenance/AIOps
 ```
 
 ### Download the Datasets
@@ -91,7 +91,7 @@ The dataset we will use in our workflow example is [Elevator Predictive Maintena
 Before runnning the workflow script, you need to download [dataset](https://www.kaggle.com/datasets/shivamb/elevator-predictive-maintenance-dataset) from kaggle and decompress it to get csv file called `predictive-maintenance-dataset.csv`.
 
 ```bash
-export DATASET_DIR=your_directory_of_csv_file
+export DATASET_DIR=<your_directory_of_csv_file>
 cd $DATASET_DIR
 # download and decompress to get csv file called `predictive-maintenance-dataset.csv`
 cd $WORKSPACE
@@ -128,16 +128,16 @@ docker compose version
 Ensure some environment variables are set before running workflow.
 
 ```bash
-export DATASET_DIR=your_directory_of_csv_file
+export DATASET_DIR=<your_directory_of_csv_file>
 export FINAL_IMAGE_NAME=workflow # You may choose any image name you want
-export http_proxy=your_http_proxy 
-export https_proxy=your_https_proxy
+export http_proxy=<your_http_proxy>
+export https_proxy=<your_https_proxy>
 ```
 
 Then build the provided docker image.
 
 ```bash 
-cd $WORKSPACE/<workflow repo name>/docker-compose 
+cd $WORKSPACE/Predictive-Assets-Maintenance/docker-compose 
 docker compose up --build
  ```
 
@@ -149,7 +149,7 @@ The container flow diagram using Mermaid is as following:
 Run entire pipeline:
 
 ```bash
-docker compose run <service> &
+docker compose run asset-maintenance &
 ```
 
 | Environment Variable Name | Default Value | Description |
@@ -160,7 +160,7 @@ docker compose run <service> &
 Follow logs of each individual pipeline step using the commands below:
 
 ```bash
-docker compose logs <service> -f
+docker compose logs asset-maintenance -f
 ```
 
 #### Run One workflow with Docker Compose
@@ -171,7 +171,7 @@ The Mermaid diagram for workflow is shown as following:
 Create your own script and run your changes inside of the container using compose as follows:
 
 ```bash
-cd $WORKSPACE/<workflow repo name>/docker-compose
+cd $WORKSPACE/Predictive-Assets-Maintenance/docker-compose
 docker compose run dev
 ```
 
@@ -195,7 +195,7 @@ export DOCKER_RUN_ENVS="-e ftp_proxy=${ftp_proxy} \
 Run the workflow using the ``docker run`` command, as shown:
 
 ```bash
-export DATASET_DIR=your_directory_of_csv_file
+export DATASET_DIR=<your_directory_of_csv_file>
 docker run \
   --env DATASET_DIR=${DATASET_DIR} \
   --volume ${DATASET_DIR}:/dataset \
@@ -266,7 +266,7 @@ Run these commands to set up the workflow's conda environment and install requir
 ```
 cd $WORKSPACE
 git clone https://github.com/intel/Predictive-Assets-Maintenance.git
-cd $WORKSPACE/<workflow repo name>/AIOps
+cd $WORKSPACE/Predictive-Assets-Maintenance/AIOps
 
 conda create -n my_env python=3.9 setuptools=58.0.4
 conda activate my_env
@@ -276,7 +276,7 @@ pip install --pre --upgrade bigdl-chronos[pytorch] matplotlib notebook==6.4.12
 Besides, download [dataset](https://www.kaggle.com/datasets/shivamb/elevator-predictive-maintenance-dataset) from kaggle and decompress it to get csv file called `predictive-maintenance-dataset.csv`.
 Run the following command to download and extract dataset.
 ```bash
-export DATASET_DIR=your_directory_of_csv_file
+export DATASET_DIR=<your_directory_of_csv_file>
 ```
 
 #### Run Workflow
