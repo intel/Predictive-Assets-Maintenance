@@ -270,7 +270,7 @@ cd $WORKSPACE/Predictive-Assets-Maintenance/AIOps
 
 conda create -n my_env python=3.9 setuptools=58.0.4
 conda activate my_env
-pip install --pre --upgrade bigdl-chronos[pytorch] matplotlib notebook==6.4.12
+pip install bigdl-chronos[pytorch]==2.4.0b20230522 matplotlib==3.7.1 notebook==6.4.12
 ```
 
 Besides, download [dataset](https://www.kaggle.com/datasets/shivamb/elevator-predictive-maintenance-dataset) from kaggle and decompress it to get csv file called `predictive-maintenance-dataset.csv`.
