@@ -102,6 +102,7 @@ You can execute the references pipelines using the following environments:
 * Docker
 * Argo 
 * Bare metal. 
+* Jupyter lab.
 
 ### Run Using Docker
 
@@ -307,6 +308,35 @@ pattern anomaly index: [279, 679, 1079, 1479, 1879, 2279, 2319, 2679, 2719, 2739
 trend anomaly index: [2959, 3599, 2839, 2719, 3359, 2599, 3239, 3119, 2999, 3639, 2879, 3519, 2759, 3399, 2639, 3279, 3159, 2519, 3039, 3199, 2919, 3559, 2799, 3439, 3319, 2559]
 anomaly index: [3079, 6279, 5879, 2319, 2959, 3599, 3479, 279, 2839, 2719, 3359, 679, 3879, 2599, 3239, 3119, 2739, 1079, 4279, 2999, 3639, 3319, 3519, 2751, 2879, 3139, 1479, 4679, 2759, 3399, 2559, 3151, 3919, 2639, 3279, 1879, 5079, 3159, 2519, 2783, 3551, 3039, 2279, 5479, 2919, 3559, 3183, 2799, 3439, 2679, 3199]
 ```
+
+### Run Using Jupyter Lab
+#### 1. Prepare Environment
+Users are encouraged to use the ``conda`` package and enviroment on local computer. If you don't already have ``conda`` installed, see the [Conda Linux installation instructions](https://docs.conda.io/projects/conda/en/stable/user-guide/install/linux.html).
+```bash
+conda create -n my_env python=3.9 setuptools=58.0.4
+conda activate my_env
+pip install --pre --upgrade bigdl-chronos[pytorch] matplotlib notebook==6.4.12
+
+# to use jupyter lab
+pip install jupyterlab jupyter_server_terminals
+conda install ipykernel -y
+ipython kernel install --user --name=my_env
+```
+
+#### 2. Set Up Working Directory
+```bash
+# If you have done this in section Workflow Repository
+# please skip next 2 commands
+mkdir ~/work && cd ~/work
+git clone https://github.com/intel/Predictive-Assets-Maintenance.git
+```
+
+#### 3. Run Notebook
+Run the following command to use jupyter lab:
+```bash
+jupyter lab
+```
+Open jupyter lab in a web browser and set `my_env` as the jupyter kernel. Then you can open `AIOps_Asset_Maintenance.ipynb` and follow the notebook's instructions step by step.
 
 ## Summary and Next Steps
 
