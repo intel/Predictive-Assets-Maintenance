@@ -1,0 +1,79 @@
+---
+flow: predictive-assets-maintenance
+recurring: 
+next_run_utc: 
+tasks:
+- input: bash workflow_forecast.sh
+  params: []
+  computes:
+  - SPR.small
+  image: aiops/asset-maintenance:beta
+  description: forecast
+  type: exec
+  git_commit: 
+  git_branch: 
+  mount_folders: []
+  icon: 
+  output_dir: output
+  confirmation: false
+  standalone_mode: false
+  notify_on_error: false
+  notify_on_success: false
+  emails: []
+  objective: 
+  objective_goal: 
+  objective_function: min
+  max_jobs: -1
+  parallel_jobs: 1
+  algorithm: GridSearch
+  queue_slug: ildjaux68t7dxx7q55lc
+  title: forecast
+  top: 119
+  left: 399
+  conditions: []
+  commit: bea20811ba93ee352e2d594057f7e1f61e176723
+- input: bash workflow_detect.sh
+  params: []
+  computes:
+  - SPR.small
+  image: aiops/asset-maintenance:beta
+  description: detection
+  type: exec
+  git_commit: 
+  git_branch: 
+  mount_folders: []
+  icon: 
+  output_dir: output
+  confirmation: false
+  standalone_mode: false
+  notify_on_error: false
+  notify_on_success: false
+  emails: []
+  objective: 
+  objective_goal: 
+  objective_function: min
+  max_jobs: -1
+  parallel_jobs: 1
+  algorithm: GridSearch
+  queue_slug: ildjaux68t7dxx7q55lc
+  title: detection
+  top: 120
+  left: 734
+  conditions: []
+  commit: bea20811ba93ee352e2d594057f7e1f61e176723
+- title: predictive-maintainance
+  top: 120
+  left: 61
+  description: predictive-maintainance
+  conditions: []
+  type: data
+  dataset: predictive-maintainance
+  data_commit: 
+  data_query: 
+  use_cached: true
+  sync_type: sync_all
+relations:
+- from: forecast
+  to: detection
+- from: predictive-maintainance
+  to: forecast
