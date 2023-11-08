@@ -7,7 +7,7 @@ tasks:
   params: []
   computes:
   - SPR.small
-  image: aiops/asset-maintenance:beta
+  image: intelanalytics/predictive-assets-maintenance:0.1
   description: forecast
   type: exec
   git_commit: 
@@ -36,7 +36,7 @@ tasks:
   params: []
   computes:
   - SPR.small
-  image: aiops/asset-maintenance:beta
+  image: intelanalytics/predictive-assets-maintenance:0.1
   description: detection
   type: exec
   git_commit: 
