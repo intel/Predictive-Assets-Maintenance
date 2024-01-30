@@ -203,7 +203,7 @@ thd.fit(y_train_unscale, y_pred_train_unscale)
 
 
 test_anomaly_indexes = thd.anomaly_indexes(y_pred=y_pred_test_unscale)
-print("The index of anoalies in test dataset only according to predict data is:")
+print("The index of anomalies in test dataset only according to predict data is:")
 for key, value in test_anomaly_indexes.items():
     print(f'{key}: {value}')
 
@@ -222,7 +222,7 @@ plot_anomalies_value(y_test_unscale, y_pred_test_unscale, test_anomaly_indexes['
 
 
 test_anomaly_indexes = thd.anomaly_indexes(y=y_test_unscale, y_pred=y_pred_test_unscale)
-print("The index of anoalies in test dataset according to true data and predicted data is:")
+print("The index of anomalies in test dataset according to true data and predicted data is:")
 for key, value in test_anomaly_indexes.items():
     print(f'{key}: {value}')
 
