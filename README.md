@@ -299,11 +299,11 @@ The main part will be the model training progress bar, finally you can obtain th
 Epoch 4: 100%|███████████████████████████████████████████████████████████████████████| 1814/1814 [01:39<00:00, 18.32it/s, loss=0.311]
 Training completed
 MSE is 25.46
-The index of anoalies in test dataset only according to predict data is:
+The index of anomalies in test dataset only according to predict data is:
 pattern anomaly index: []
 trend anomaly index: [3199, 3159, 3079]
 anomaly index: [3079, 3159, 3199]
-The index of anoalies in test dataset according to true data and predicted data is:
+The index of anomalies in test dataset according to true data and predicted data is:
 pattern anomaly index: [279, 679, 1079, 1479, 1879, 2279, 2319, 2679, 2719, 2739, 2751, 2783, 3079, 3119, 3139, 3151, 3183, 3479, 3519, 3551, 3879, 3919, 4279, 4679, 5079, 5479, 5879, 6279]
 trend anomaly index: [2959, 3599, 2839, 2719, 3359, 2599, 3239, 3119, 2999, 3639, 2879, 3519, 2759, 3399, 2639, 3279, 3159, 2519, 3039, 3199, 2919, 3559, 2799, 3439, 3319, 2559]
 anomaly index: [3079, 6279, 5879, 2319, 2959, 3599, 3479, 279, 2839, 2719, 3359, 679, 3879, 2599, 3239, 3119, 2739, 1079, 4279, 2999, 3639, 3319, 3519, 2751, 2879, 3139, 1479, 4679, 2759, 3399, 2559, 3151, 3919, 2639, 3279, 1879, 5079, 3159, 2519, 2783, 3551, 3039, 2279, 5479, 2919, 3559, 3183, 2799, 3439, 2679, 3199]
