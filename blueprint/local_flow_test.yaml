@@ -3,12 +3,41 @@ flow: predictive-assets-maintenance
 recurring: 
 next_run_utc: 
 tasks:
+- input: bash download.sh
+  params: []
+  computes:
+  - SPR.small
+  image: intelanalytics/predictive-assets-maintenance:0.1
+  description: Download dataset
+  type: exec
+  git_commit: 
+  git_branch: 
+  mount_folders: []
+  icon: 
+  output_dir: output
+  confirmation: false
+  standalone_mode: false
+  notify_on_error: false
+  notify_on_success: false
+  emails: []
+  objective: 
+  objective_goal: 
+  objective_function: min
+  max_jobs: -1
+  parallel_jobs: 1
+  algorithm: GridSearch
+  queue_slug: ildjaux68t7dxx7q55lc
+  title: Download dataset
+  top: 151
+  left: 106
+  conditions: []
+  commit: e86188c948756abad88589d747f6a308fc2c0c0d
 - input: bash workflow_forecast.sh
   params: []
   computes:
   - SPR.small
   image: intelanalytics/predictive-assets-maintenance:0.1
-  description: forecast
+  description: Forecast
   type: exec
   git_commit: 
   git_branch: 
@@ -27,17 +56,17 @@ tasks:
   parallel_jobs: 1
   algorithm: GridSearch
   queue_slug: ildjaux68t7dxx7q55lc
-  title: forecast
-  top: 119
-  left: 399
+  title: Forecast
+  top: 151
+  left: 402
   conditions: []
-  commit: bea20811ba93ee352e2d594057f7e1f61e176723
+  commit: e86188c948756abad88589d747f6a308fc2c0c0d
 - input: bash workflow_detect.sh
   params: []
   computes:
   - SPR.small
   image: intelanalytics/predictive-assets-maintenance:0.1
-  description: detection
+  description: Detect
   type: exec
   git_commit: 
   git_branch: 
@@ -56,24 +85,13 @@ tasks:
   parallel_jobs: 1
   algorithm: GridSearch
   queue_slug: ildjaux68t7dxx7q55lc
-  title: detection
-  top: 120
-  left: 734
+  title: Detect
+  top: 151
+  left: 704
   conditions: []
-  commit: bea20811ba93ee352e2d594057f7e1f61e176723
-- title: predictive-maintainance
-  top: 120
-  left: 61
-  description: predictive-maintainance
-  conditions: []
-  type: data
-  dataset: predictive-maintainance
-  data_commit: 
-  data_query: 
-  use_cached: true
-  sync_type: sync_all
+  commit: e86188c948756abad88589d747f6a308fc2c0c0d
 relations:
-- from: forecast
-  to: detection
-- from: predictive-maintainance
-  to: forecast
+- from: Download dataset
+  to: Forecast
+- from: Forecast
+  to: Detect
