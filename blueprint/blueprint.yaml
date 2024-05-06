@@ -1,0 +1,98 @@
+# Copyright (c) 2022 Intel Corporation
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy of
+# this software and associated documentation files (the "Software"), to deal in
+# the Software without restriction, including without limitation the rights to
+# use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
+# the Software, and to permit persons to whom the Software is furnished to do so,
+# subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
+# FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+# COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
+# IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+# CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+#
+# SPDX-License-Identifier: MIT
+
+title: Predictive Assets Maintenance
+version: 1.0.0
+description: "Predict based on historical data and detect checking points (i.e. anomaly)"
+
+
+author: "Intel"
+author_email: "info@cnvrg.io"
+
+tasks:
+  - title: Download dataset
+    top: 151
+    left: 106
+
+    type: exec
+
+    library: Download dataset
+    library_version: 1.0.0
+    command: bash download.sh
+
+    requirements:
+      cpu: 12
+      memory: 24
+      gpu: 0
+      hpu: 0
+
+    image: intelanalytics/predictive-assets-maintenance:0.1
+    language: python3
+    params: []
+
+
+  - title: Forecast
+    top: 151
+    left: 402
+
+    type: exec
+
+    library: Forecast
+    library_version: 1.0.0
+    command: bash workflow_forecast.sh
+
+    requirements:
+      cpu: 12
+      memory: 24
+      gpu: 0
+      hpu: 0
+
+    image: intelanalytics/predictive-assets-maintenance:0.1
+    language: python3
+    params: []
+
+
+  - title: Detect
+    top: 151
+    left: 704
+
+    type: exec
+
+    library: Detect
+    library_version: 1.0.0
+    command: bash workflow_detect.sh
+
+    requirements:
+      cpu: 12
+      memory: 24
+      gpu: 0
+      hpu: 0
+
+    image: intelanalytics/predictive-assets-maintenance:0.1
+    language: python3
+    params: []
+
+
+relations:
+- from: Download dataset
+  to: Forecast
+- from: Forecast
+  to: Detect
