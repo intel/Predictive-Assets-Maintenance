@@ -27,6 +27,10 @@ description: "Predict based on historical data and detect checking points (i.e. 
 author: "Intel"
 author_email: "info@cnvrg.io"
 
+tags:
+  - training
+  - inference
+
 tasks:
   - title: Download dataset
     top: 151
