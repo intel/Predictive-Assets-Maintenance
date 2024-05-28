@@ -1,37 +1,53 @@
-input: bash workflow_forecast.sh
-params:
-- key: ''
-  type: discrete
-  min: 0
-  max: 0
-  scale: linear
-  steps: 0
-  values: []
-computes:
-- SPR.small
-image: intelanalytics/predictive-assets-maintenance:0.1
-description: Forecast
-type: exec
-git_commit: 
-git_branch: 
-mount_folders:
-- ''
-icon: 
-output_dir: output
-confirmation: false
-standalone_mode: false
-notify_on_error: false
-notify_on_success: false
-emails: []
-objective: 
-objective_goal: 
-objective_function: min
-max_jobs: -1
-parallel_jobs: 1
-algorithm: GridSearch
-queue_slug: ildjaux68t7dxx7q55lc
+# Copyright (c) 2022 Intel Corporation
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy of
+# this software and associated documentation files (the "Software"), to deal in
+# the Software without restriction, including without limitation the rights to
+# use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
+# the Software, and to permit persons to whom the Software is furnished to do so,
+# subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
+# FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+# COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
+# IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+# CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+#
+# SPDX-License-Identifier: MIT
+
 title: Forecast
-top: 151
-left: 402
-conditions: []
-:commit: e86188c948756abad88589d747f6a308fc2c0c0d
+version: 1.0.0
+description: "Predict based on historical data"
+
+
+author: "Intel"
+author_email: "info@cnvrg.io"
+
+tags:
+  - training
+  - inference
+
+tasks:
+  - title: Forecast
+    top: 151
+    left: 402
+
+    type: exec
+
+    library: Forecast
+    library_version: 1.0.0
+    command: bash workflow_forecast.sh
+
+    requirements:
+      cpu: 12
+      memory: 24
+      gpu: 0
+      hpu: 0
+
+    image: intelanalytics/predictive-assets-maintenance:0.1
+    language: python3
+    params: []
