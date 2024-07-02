@@ -1,0 +1,12 @@
+dataset_path: "predictive-maintenance-dataset.csv"
+datetime_column: "time_step"
+target_column: "vibration"
+feature_column: ["revolutions","humidity","x1","x2","x3","x4","x5"]
+forecaster: TCNForecaster
+past_seq_len: 120 # Specify the history time steps (i.e. lookback)
+future_seq_len: 1 # Specify the output time steps (i.e. horizon)
+input_feature_num: 8 # Specify the feature dimension
+output_feature_num: 1 # Specify the output dimension
+kernel_size: 5 # Specify convolutional layer filter height in TCN's encoder
+training_epoch: 5
+output_path: "output/" # path to save the checkpoints or final model
