@@ -101,8 +101,8 @@ cd $WORKSPACE
 You can execute the references pipelines using the following environments:
 * Docker
 * Argo 
-* Bare metal. 
-* Jupyter lab.
+* Bare metal
+* Jupyter lab
 
 ### Run Using Docker
 
